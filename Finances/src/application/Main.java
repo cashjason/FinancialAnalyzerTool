@@ -27,36 +27,31 @@ public class Main extends Application {
 	Scene scene;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-//		try {
-//			menu = new Menu("File");
-//			menuItem1 = new MenuItem("Import");
-//			menuItem1.setOnAction(e -> {
-//			    browse();
-//			});
-//			menu.getItems().add(menuItem1);
-//			MenuBar menuBar = new MenuBar();
-//			menuBar.getMenus().add(menu);
-//
-//	        VBox vBox = new VBox(menuBar);
-//			BorderPane root = new BorderPane();
-//			scene = new Scene(vBox,1000,700);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
-//			
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
-		 Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
-		   Scene scene = new Scene(root);
-		   primaryStage.setScene(scene);
-		   primaryStage.show();
+		try {
+			menu = new Menu("File");
+			menuItem1 = new MenuItem("Import");
+			menuItem1.setOnAction(e -> {
+			    browse();
+			});
+			menu.getItems().add(menuItem1);
+			MenuBar menuBar = new MenuBar();
+			menuBar.getMenus().add(menu);
+
+			BorderPane root = new BorderPane();
+			root.setTop(menuBar);
+			scene = new Scene(root,1000,700);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void browse() {
 		FileChooser fileChooser = new FileChooser();
 	    File selectedFile = fileChooser.showOpenDialog(null);
-	    System.out.println(""+selectedFile.getName());
 	    try {
 			FileProcessor processor = new FileProcessor();
 			processor.processFile(selectedFile);
