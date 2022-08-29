@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class FileProcessor {
 	private static ArrayList<Record> transactions = new ArrayList<Record>();
-	
+
 	public void processFile(File file) throws InterruptedException, ParseException {
 		try {
 			String delimiter = ",";
@@ -25,6 +25,7 @@ public class FileProcessor {
 				tempArr = line.split(delimiter);
 				if(tempArr.length > 3)
 				{
+					//first item is date
 					StringBuilder sb = new StringBuilder(tempArr[0].trim());
 					sb.deleteCharAt(tempArr[0].trim().length()-1);
 					sb.deleteCharAt(0);
@@ -46,6 +47,10 @@ public class FileProcessor {
 	    catch(IOException ioe) {
 	    	ioe.printStackTrace();
 	    }
+	}
+	
+	public static ArrayList<Record> getTransactions() {
+		return transactions;
 	}
 	
 	public void printRecords() {
